@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -39,7 +40,9 @@ class MainActivity : ComponentActivity() {
                     //Asynawai()
                     //WitConxt()
                     //lachdsedexpl()
-                    deffrdexpl()
+                    //deffrdexpl()
+
+                    explwit()
                 }
             }
         }
@@ -149,7 +152,7 @@ fun expllet(){
     /*let: The let function allows you to perform operations on an object
     within a lambda expression and return a result.
     It is often used for null-checking and chaining function calls. */
-    val numbers = mutableListOf(1.2,3,5.5,67,7,8)
+    val numbers = mutableListOf(1.2,3,5,67,7,8)
 
     val result = numbers?.let {
         // Perform operations on the non-null value
@@ -157,15 +160,10 @@ fun expllet(){
     } // Default value if 'text' is null
 
     Text(text = "Length: $result")
-/*
-    nullableObject?.let { nonNullObject ->
-        // Perform operations on nonNullObject
-        // This block is executed only when nullableObject is not null
-    }
-*/
-    val nullableText: String? = "Hello"
 
-    val res = nullableText?.let {
+    val name: String? = "India"
+
+    val res = name?.let {
             text ->
         // Perform operations on non-null 'text'
         val uppercaseText = text.uppercase(Locale.ROOT)
@@ -188,6 +186,7 @@ fun explrun(){
         val greeting = "Hello"
         val name = "John"
         "$greeting, $name!"
+
     }
 
     Text(text = message)
@@ -198,46 +197,57 @@ data class Pers(var name : String,var age :Int)
 
 @Composable
 fun explwit(){
-    //with example
-    /*
+
+    Column() {
+
+
+        //with example
+        /*
     with: The with function allows you to execute multiple operations on
     an object without the need for a lambda expression.
     It simplifies accessing properties and invoking functions on an object.
     */
-    val person = Pers("John", 30)
-    with(person) {
-      person.name = "Jane"
-        age += 1
-    }
+        val person = Pers("John", 30)
 
-    Text(text = "Name: ${person.name}, Age: ${person.age}")
+        with(person) {
+            person.name = "Jane"
+            age += 1
+        }
 
-    // apply example
-    /*
+        Text(text = " iam from with example Name: ${person.name}, Age: ${person.age} \n\n")
+
+        // apply example
+        /*
     apply: The apply function is similar to with, but it returns
     the original object instead of a result. It is commonly used for
     configuring properties of an object in a concise manner*/
-    val perso = Pers("John", 30).apply {
-        name = "Jane"
-        age += 1
-    }
-    Text(text = "updated Name: ${perso.name}, Age: ${perso.age}")
+        val perso = Pers("Jane", 36).apply {
+            name = "Marie"
+            age += 2
+        }
+        perso.apply {
+
+        }
+
+        Text(text = "iam from apply example updated Name: ${perso.name}, Age: ${perso.age}")
 
 
-    //also example
-    /*
+        //also example
+        /*
     also: The also function is similar to apply, but it returns
     the original object instead of a result. It is useful when you
     want to perform additional operations on an object within a chain
     of function calls*/
-    val text = "Hello"
-    val result = text.also {
-        // Perform additional operations on 'text'
-        println("Length: ${it.length}")
+        val text = "Hello"
+
+
+        val rest = text.also {
+            // Perform additional operations on 'text'
+            println("Length: "+it.length.toString())
+        }
+
+        Text(text =  text.length.toString())
+
     }
-
-    Text(text = result)
-
-
 }
 
